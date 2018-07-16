@@ -46,13 +46,13 @@ const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 module.exports = (robot) => {
 
-  robot.hear(/ai (.+)/i, (res) => {
+  robot.catchAll((res) => {
     // The text query request.
     const request = {
       session: sessionPath,
       queryInput: {
         text: {
-          text: res.match[1],
+          text: res.message.text,
           languageCode: languageCode,
         },
       },
