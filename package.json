@@ -12,12 +12,14 @@
     "hubot-redis-brain": "0.0.4",
     "hubot-rules": "^0.1.2",
     "hubot-scripts": "^2.17.2",
-    "hubot-shell": "^1.0.2"
+    "hubot-shell": "^1.0.2",
+    "hubot-slack": "^4.5.2"
   },
   "engines": {
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "set -a; . local.env; set +a; ./bin/hubot"
+    "start": "set -a; . local.env; set +a; ./bin/hubot",
+    "slack": "set -a; . local.env; set +a; ./bin/hubot --adapter slack"
   }
 }
