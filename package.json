@@ -6,7 +6,7 @@
   "description": "A helpful bot to do some tedious works for me",
   "dependencies": {
     "dialogflow": "^0.5.0",
-    "hubot": "^2.19.0",
+    "hubot": "^3.0.1",
     "hubot-diagnostics": "0.0.2",
     "hubot-help": "^0.2.2",
     "hubot-redis-brain": "0.0.4",
@@ -19,7 +19,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "set -a; . local.env; set +a; ./bin/hubot",
-    "slack": "set -a; . local.env; set +a; ./bin/hubot --adapter slack"
+    "start": "set -a; . .env.local; set +a; ./bin/hubot",
+    "slack": "set -a; . .env.local; set +a; ./bin/hubot --adapter slack"
   }
 }

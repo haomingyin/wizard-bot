@@ -18,6 +18,9 @@ module.exports = (robot) ->
   robot.respond /build (.+)/i, (res) ->
     jenkins_build res, [res.match[1]]
 
+  robot.on 'build', (res, args) ->
+    jenkins_build res, args
+
   robot.router.post '/hubot/jenkins/echo/:project', (req, res) ->
     room = '#general'
     project = req.params.project
@@ -37,9 +40,9 @@ module.exports = (robot) ->
       .post() (err, resp, body) ->
         if err or resp.statusCode isnt 201
           robot.logger.error "Failed to trigger a build at '#{url}', status code: '#{resp.statusCode}', error: #{err}"
-          res.send "Oops, Jenkins didn't want to build for project '#{args[0]}''"
+          res.send "Oops, Jenkins didn't want to build for project '#{args[0]}'"
         else
-          res.send "Bee bu, a new build has been triggered for project '#{args[0]}''"
+          res.send "Bee bu, a new build has been triggered for project '#{args[0]}'"
         return resp.statusCode is 201
 
   get_auth = () ->
