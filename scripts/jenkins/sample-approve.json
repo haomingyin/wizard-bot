@@ -1,0 +1,61 @@
+{
+  "message": "Make a choice ;)",
+  "status": "SUCCESS",
+  "extraData": null,
+  "userName": "Haoming Yin",
+  "buildCause": "Haoming Yin",
+  "userId": "haomingyin",
+  "stepName": "APPROVE",
+  "envVars": {
+    "BRANCH_NAME": "master",
+    "BUILD_DISPLAY_NAME": "#25",
+    "BUILD_ID": "25",
+    "BUILD_NUMBER": "25",
+    "BUILD_TAG": "jenkins-Haoming Yin-jenkins-pipeline-test-master-25",
+    "BUILD_URL":
+      "https://jenkins.haomingyin.com/job/Haoming%20Yin/job/jenkins-pipeline-test/job/master/25/",
+    "CLASSPATH": "",
+    "com.apple.java.jvmTask": "CommandLine",
+    "EXECUTOR_NUMBER": "1",
+    "GIT_BRANCH": "master",
+    "GIT_COMMIT": "8d19e18d631e4cf5dd64430b24b82054a971f1ab",
+    "GIT_PREVIOUS_COMMIT": "8d19e18d631e4cf5dd64430b24b82054a971f1ab",
+    "GIT_PREVIOUS_SUCCESSFUL_COMMIT":
+      "8d19e18d631e4cf5dd64430b24b82054a971f1ab",
+    "GIT_URL": "https://github.com/haomingyin/jenkins-pipeline-test.git",
+    "HUDSON_HOME": "/var/root/.jenkins",
+    "HUDSON_SERVER_COOKIE": "01fd37ff4d354d4d",
+    "HUDSON_URL": "https://jenkins.haomingyin.com/",
+    "JAVA_MAIN_CLASS_50": "Main",
+    "JENKINS_HOME": "/var/root/.jenkins",
+    "JENKINS_NODE_COOKIE": "e4ab1a3a-73dc-44e0-8527-0d05acf07f87",
+    "JENKINS_SERVER_COOKIE": "01fd37ff4d354d4d",
+    "JENKINS_URL": "https://jenkins.haomingyin.com/",
+    "JOB_BASE_NAME": "master",
+    "JOB_DISPLAY_URL":
+      "https://jenkins.haomingyin.com/job/Haoming%20Yin/job/jenkins-pipeline-test/job/master/display/redirect",
+    "JOB_NAME": "Haoming Yin/jenkins-pipeline-test/master",
+    "JOB_URL":
+      "https://jenkins.haomingyin.com/job/Haoming%20Yin/job/jenkins-pipeline-test/job/master/",
+    "NODE_LABELS": "master",
+    "NODE_NAME": "master",
+    "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+    "RUN_CHANGES_DISPLAY_URL":
+      "https://jenkins.haomingyin.com/job/Haoming%20Yin/job/jenkins-pipeline-test/job/master/25/display/redirect?page=changes",
+    "RUN_DISPLAY_URL":
+      "https://jenkins.haomingyin.com/job/Haoming%20Yin/job/jenkins-pipeline-test/job/master/25/display/redirect",
+    "STAGE_NAME": "User Input",
+    "VERSION": "1.0.3",
+    "WORKSPACE":
+      "/var/root/.jenkins/workspace/enkins-pipeline-test_master-FQOXABNQZDFIVE25YPTS6P7YZTVXRJNMDSGILDXI6BP74YBODHWQ",
+    "XPC_FLAGS": "0x0",
+    "XPC_SERVICE_NAME": "homebrew.mxcl.jenkins"
+  },
+  "tokens": { "BUILD_NUMBER": "25", "BUILD_ID": null },
+  "ts": 1532079283243,
+  "id": "HubotInput1",
+  "submitter": null,
+  "submitterParameter": "submiiter",
+  "ok": "Confirm",
+  "parameters": null
+}

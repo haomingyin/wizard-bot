@@ -20,7 +20,8 @@ module.exports = (robot) ->
     # match if message was directly addressed to bot
     query = res.message.text
     r = new RegExp "^(?:#{robot.alias}|@?#{robot.name}) (.*)", "i"
-    matches = query.match r
+    if query # query might be empty
+      matches = query.match r
 
     if matches and matches.length > 1
       query = matches[1]

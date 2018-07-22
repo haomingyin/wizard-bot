@@ -13,6 +13,8 @@
 # Author:
 #   Haoming Yin
 
+jenkins = require('./jenkins/jenkins-helper.js')
+
 module.exports = (robot) ->
 
   robot.respond /build (.+)/i, (res) ->
@@ -21,11 +23,16 @@ module.exports = (robot) ->
   robot.on 'build', (res, args) ->
     jenkins_build res, args
 
-  robot.router.post '/hubot/jenkins/echo/:project', (req, res) ->
-    room = '#general'
-    project = req.params.project
-    robot.messageRoom room, "I have heard that someone wants to build for project '#{project}'"
-    res.send req.body
+  ###
+  listener for Jenkins Hubot Steps plugin
+  ###
+  robot.router.post '/hubot/notify/:room', (req, res) ->
+    jenkins.hubotJenkinsDelegate robot, req, res
+
+    # room = '#general'
+    # body = JSON.stringify req.body
+    # robot.messageRoom room, "requset body: #{body}"
+    # res.send "Ok"
 
   ###
   build command helper to trigger a new build on Jenkins server
@@ -34,29 +41,9 @@ module.exports = (robot) ->
   @return {bool} true if a new build is triggered
   ###
   jenkins_build = (res, args) ->
-    url = "#{get_project_url args[0]}/build"
-    robot.http(url)
-      .auth(get_auth()...)
-      .post() (err, resp, body) ->
-        if err or resp.statusCode isnt 201
-          robot.logger.error "Failed to trigger a build at '#{url}', status code: '#{resp.statusCode}', error: #{err}"
-          res.send "Oops, Jenkins didn't want to build for project '#{args[0]}'"
-        else
-          res.send "Bee bu, a new build has been triggered for project '#{args[0]}'"
-        return resp.statusCode is 201
-
-  get_auth = () ->
-    username = process.env.JENKINS_USERNAME
-    apiKey = process.env.JENKINS_API_KEY
-    return [username, apiKey]
-
-  ###
-  get the Jenkins server url with given project and branch name
-  @param {string} project name
-  @param {string} branch name
-  @return {string} the url
-  ###
-  get_project_url = (project, branch="master") ->
-    host = process.env.JENKINS_HOST
-    org = process.env.JENKINS_ORG
-    return "#{host}/job/#{org}/job/#{project}/job/#{branch}"
+    jenkins.build(args[0])
+    .then (resp) ->
+      res.send "Bee bu, a new build has been triggered for project '#{args[0]}'"
+    .catch (err) ->
+      robot.logger.error "Failed to build for '#{args[0]}' / Err: '#{err.response.status}"
+      res.send "Oops, Jenkins didn't want to build for project '#{args[0]}'"

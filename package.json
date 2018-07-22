@@ -5,20 +5,29 @@
   "author": "Haoming Yin <me@haomingyin.com>",
   "description": "A helpful bot to do some tedious works for me",
   "dependencies": {
+    "@slack/interactive-messages": "^0.4.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "dialogflow": "^0.5.0",
-    "hubot": "^3.0.1",
+    "hubot": "2.19.0",
     "hubot-diagnostics": "0.0.2",
     "hubot-help": "^0.2.2",
     "hubot-redis-brain": "0.0.4",
     "hubot-rules": "^0.1.2",
     "hubot-scripts": "^2.17.2",
     "hubot-shell": "^1.0.2",
-    "hubot-slack": "^4.5.2"
+    "hubot-slack": "^4.5.2",
+    "querystring": "^0.2.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "uuid": "^3.3.2"
   },
   "engines": {
     "node": "0.10.x"
   },
   "scripts": {
+    "redis-down": "docker-compose -f redis/docker-compose.yml down",
+    "redis": "npm run redis-down; docker-compose -f redis/docker-compose.yml up -d",
     "start": "set -a; . .env.local; set +a; ./bin/hubot",
     "slack": "set -a; . .env.local; set +a; ./bin/hubot --adapter slack"
   }

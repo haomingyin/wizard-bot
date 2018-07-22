@@ -1,0 +1,11 @@
+version: '3'
+services:
+  redis:
+    image: redis:4.0.10-alpine
+    volumes:
+      - ./.tmp:/data
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--appendonly", "yes"]
+
+
