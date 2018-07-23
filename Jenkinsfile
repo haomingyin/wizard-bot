@@ -42,13 +42,13 @@ pipeline {
             sh """\
               docker run -d --rm -p 8089:8089 --name wizard-bot-prod \
               --env-file ./.env \
-              -e JENKINS_URL=${env.JENKINS_URL} \
-              -e JENKINS_ORG=${env.JENKINS_ORG} \
-              -e JENKINS_USERNAME=${JENKINS_USERNAME} \
-              -e JENKINS_API_KEY=${JENKINS_API_KEY} \
-              -e DIALOGFLOW_PROJECT_ID=${WB_DIALOGFLOW_PROJECT_ID} \
-              -e HUBOT_SLACK_TOKEN=${WB_SLACK_BOT_USER_TOKEN} \
-              -e SLACK_VERIFICATION_TOKEN=${WB_SLACK_VERIFICATION_TOKEN} \
+              -e JENKINS_URL="${env.JENKINS_URL}" \
+              -e JENKINS_ORG="${env.JENKINS_ORG}" \
+              -e JENKINS_USERNAME="${JENKINS_USERNAME}" \
+              -e JENKINS_API_KEY="${JENKINS_API_KEY}" \
+              -e DIALOGFLOW_PROJECT_ID="${WB_DIALOGFLOW_PROJECT_ID}" \
+              -e HUBOT_SLACK_TOKEN="${WB_SLACK_BOT_USER_TOKEN}" \
+              -e SLACK_VERIFICATION_TOKEN="${WB_SLACK_VERIFICATION_TOKEN}" \
               ${env.APP_NAME} \
               """
             }
