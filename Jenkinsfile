@@ -12,8 +12,8 @@ pipeline {
       steps {
         script {
           sh "mkdir -p ./credentials"
-          withCredentials([file(credentialsId: 'GOOGLE_DIALOGFLOW_KEY', variable: 'google-dialogflow-key')]) {
-            sh "cp \$google-dialogflow-key ./credentials/google-dialogflow-key.json"
+          withCredentials([file(credentialsId: 'WB_GOOLE_DIALOGFLOW_KEY', variable: 'WB_GOOLE_DIALOGFLOW_KEY')]) {
+            sh "cp ${WB_GOOLE_DIALOGFLOW_KEY} ./credentials/google-dialogflow-key.json"
           }
         }
       }
