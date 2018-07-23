@@ -21,7 +21,7 @@ pipeline {
 
     stage ('Docker - build') {
       steps {
-        sh "docker build -t ${env.APP_NAME}:${env.BUILD_NUMBER} -t ${env.APP_NAME}:latest ."
+        sh "docker build -t ${env.APP_NAME}:latest ."
       }
     }
 
@@ -49,7 +49,7 @@ pipeline {
               -e DIALOGFLOW_PROJECT_ID=${WB_DIALOGFLOW_PROJECT_ID} \
               -e HUBOT_SLACK_TOKEN=${WB_SLACK_BOT_USER_TOKEN} \
               -e SLACK_VERIFICATION_TOKEN=${WB_SLACK_VERIFICATION_TOKEN} \
-              ${env.APP_NAME}:latest \
+              ${env.APP_NAME} \
               """
             }
         }
