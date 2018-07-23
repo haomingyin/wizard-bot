@@ -28,7 +28,8 @@
   "scripts": {
     "redis-down": "docker-compose -f redis/docker-compose.yml down",
     "redis": "npm run redis-down; docker-compose -f redis/docker-compose.yml up -d",
-    "start": "set -a; . .env.local; set +a; ./bin/hubot",
-    "slack": "set -a; . .env.local; set +a; ./bin/hubot --adapter slack"
+    "shell": "set -a; . .env.local; set +a; ./bin/hubot",
+    "slack": "set -a; . .env.local; set +a; ./bin/hubot --adapter slack",
+    "prod": "./bin/hubot --adapter slack"
   }
 }

@@ -101,7 +101,7 @@ var getPendingInput = (buildUrl, inputId) => {
  * get the Jenkins server url with given project and branch name
  */
 var getJobUrl = (repo, branch = "master") => {
-  host = process.env.JENKINS_HOST;
+  host = process.env.JENKINS_URL;
   org = process.env.JENKINS_ORG;
   return `${host}/job/${org}/job/${repo}/job/${branch}`;
 };
