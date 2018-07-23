@@ -28,7 +28,11 @@ pipeline {
     stage ('Docker - run') {
       steps {
         script {
-          sh "docker kill wizard-bot-prod"
+          try {
+            sh "docker kill wizard-bot-prod"
+          } catch (err) {
+            echo "Wizard bot is not running, skip..."
+          }
 
           withCredentials([string(credentialsId: 'JENKINS_USERNAME', variable: 'JENKINS_USERNAME'),
           string(credentialsId: 'JENKINS_API_KEY', variable: 'JENKINS_API_KEY'),
