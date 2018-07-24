@@ -59,7 +59,7 @@ pipeline {
           string(credentialsId: 'WB_SLACK_BOT_USER_TOKEN', variable: 'WB_SLACK_BOT_USER_TOKEN'),
           string(credentialsId: 'WB_SLACK_VERIFICATION_TOKEN', variable: 'WB_SLACK_VERIFICATION_TOKEN')]) {
             sh """\
-              docker run -d --rm -p 8089:8089 --network="host" --name wizard-bot-prod \
+              docker run -d --rm -p 8089:8089 --name wizard-bot-prod \
               --env-file ./.env \
               -e JENKINS_URL="${env.JENKINS_URL}" \
               -e JENKINS_ORG="${env.JENKINS_ORG}" \
