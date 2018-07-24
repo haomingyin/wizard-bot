@@ -78,6 +78,8 @@ pipeline {
   post {
     success {
       script {
+        echo "Sleep 30s to prepare the refreshed Wizard to receive message ..."
+        sleep 30
         hubotSend message: "Build finished successfully!"
       }
     }
