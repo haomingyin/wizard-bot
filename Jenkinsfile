@@ -8,6 +8,25 @@ pipeline {
     JENKINS_ORG = 'Haoming Yin'
   }
   stages {
+    stage ('Promotion') {
+      steps {
+        script {
+          def promotion = 'No'
+          timeout (time: 30, unit: 'MINUTES') {
+            promotion = hubotApprove message: "Do you wish to deploy this build to production environment?", ok: "Confirm", id: "PromotionInput",
+            parameters: [choice(name: 'promotion', choices: 'Yes\nNo', description: '')]
+          }
+
+          if (promotion == 'No') {
+            currentBuild.result = 'ABORTED'
+            echo 'Build has been stopped to promote to production environment.'
+          } else {
+            echo 'Build will be promoted to production environment.'
+          }
+        }
+      }
+    }
+
     stage ('Credentials Injection') {
       steps {
         script {
@@ -40,7 +59,7 @@ pipeline {
           string(credentialsId: 'WB_SLACK_BOT_USER_TOKEN', variable: 'WB_SLACK_BOT_USER_TOKEN'),
           string(credentialsId: 'WB_SLACK_VERIFICATION_TOKEN', variable: 'WB_SLACK_VERIFICATION_TOKEN')]) {
             sh """\
-              docker run -d --rm -p 8089:8089 --name wizard-bot-prod \
+              docker run -d --rm -p 8089:8089 --network="host" --name wizard-bot-prod \
               --env-file ./.env \
               -e JENKINS_URL="${env.JENKINS_URL}" \
               -e JENKINS_ORG="${env.JENKINS_ORG}" \
@@ -57,6 +76,21 @@ pipeline {
     }
   }
   post {
+    success {
+      script {
+        hubotSend message: "Build finished successfully!"
+      }
+    }
+    failure {
+      script {
+        hubotSend message: "Build has failed."
+      }
+    }
+    aborted {
+      script {
+        hubotSend message: "Build has been aborted."
+      }
+    }
     always {
         cleanWs()
     }
